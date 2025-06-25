@@ -1,13 +1,31 @@
 
+import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Instagram, Youtube } from "lucide-react";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const Index = () => {
+  const [isDark, setIsDark] = useState(true);
+
+  const toggleTheme = () => {
+    setIsDark(!isDark);
+  };
+
+  const themeClasses = isDark 
+    ? "min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white"
+    : "min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 text-slate-900";
+
+  const cardClasses = isDark
+    ? "bg-slate-800/50 border-slate-700 backdrop-blur-sm"
+    : "bg-white/60 border-slate-200 backdrop-blur-sm shadow-xl";
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white">
+    <div className={themeClasses}>
+      <ThemeToggle isDark={isDark} onToggle={toggleTheme} />
+      
       {/* Background Pattern */}
-      <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"none\" fill-rule=\"evenodd\"%3E%3Cg fill=\"%239C92AC\" fill-opacity=\"0.05\"%3E%3Ccircle cx=\"30\" cy=\"30\" r=\"4\"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
+      <div className={`absolute inset-0 opacity-20 ${isDark ? "bg-[url('data:image/svg+xml,%3Csvg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"none\" fill-rule=\"evenodd\"%3E%3Cg fill=\"%239C92AC\" fill-opacity=\"0.05\"%3E%3Ccircle cx=\"30\" cy=\"30\" r=\"4\"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]" : "bg-[url('data:image/svg+xml,%3Csvg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"none\" fill-rule=\"evenodd\"%3E%3Cg fill=\"%23000\" fill-opacity=\"0.03\"%3E%3Ccircle cx=\"30\" cy=\"30\" r=\"4\"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"}`}></div>
       
       <div className="relative z-10 container mx-auto px-6 py-12 min-h-screen flex flex-col justify-center items-center">
         {/* Main Content */}
@@ -17,7 +35,7 @@ const Index = () => {
             <h1 className="text-6xl md:text-8xl font-bold bg-gradient-to-r from-purple-400 via-pink-500 to-blue-500 bg-clip-text text-transparent animate-pulse">
               Belufaney
             </h1>
-            <p className="text-xl md:text-2xl text-slate-300 font-medium">
+            <p className={`text-xl md:text-2xl font-medium ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
               Welcome to my creative universe
             </p>
           </div>
@@ -25,7 +43,7 @@ const Index = () => {
           {/* Action Cards */}
           <div className="grid md:grid-cols-2 gap-6 mt-12">
             {/* Discord Card */}
-            <Card className="bg-slate-800/50 border-slate-700 hover:border-purple-500 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/20 backdrop-blur-sm">
+            <Card className={`${cardClasses} hover:border-purple-500 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/20`}>
               <CardContent className="p-8 text-center space-y-4">
                 <div className="w-16 h-16 mx-auto bg-gradient-to-r from-purple-500 to-blue-600 rounded-full flex items-center justify-center">
                   <svg className="w-8 h-8 text-white" viewBox="0 -28.5 256 256" version="1.1" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid">
@@ -34,8 +52,8 @@ const Index = () => {
                     </g>
                   </svg>
                 </div>
-                <h3 className="text-2xl font-bold text-white">Join My Discord</h3>
-                <p className="text-slate-400">Connect with the community and stay updated!</p>
+                <h3 className={`text-2xl font-bold ${isDark ? 'text-white' : 'text-slate-800'}`}>Join My Discord</h3>
+                <p className={isDark ? 'text-slate-400' : 'text-slate-600'}>Connect with the community and stay updated!</p>
                 <Button 
                   className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-semibold py-3 rounded-lg transition-all duration-300 hover:scale-105"
                   onClick={() => window.open('#', '_blank')}
@@ -46,7 +64,7 @@ const Index = () => {
             </Card>
 
             {/* Animations Card */}
-            <Card className="bg-slate-800/50 border-slate-700 hover:border-pink-500 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-pink-500/20 backdrop-blur-sm">
+            <Card className={`${cardClasses} hover:border-pink-500 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-pink-500/20`}>
               <CardContent className="p-8 text-center space-y-4">
                 <div className="w-16 h-16 mx-auto bg-gradient-to-r from-pink-500 to-orange-500 rounded-full flex items-center justify-center">
                   <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -54,8 +72,8 @@ const Index = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
-                <h3 className="text-2xl font-bold text-white">Watch My Animations</h3>
-                <p className="text-slate-400">Check out my latest creative works and animations!</p>
+                <h3 className={`text-2xl font-bold ${isDark ? 'text-white' : 'text-slate-800'}`}>Watch My Animations</h3>
+                <p className={isDark ? 'text-slate-400' : 'text-slate-600'}>Check out my latest creative works and animations!</p>
                 <Button 
                   className="w-full bg-gradient-to-r from-pink-600 to-orange-600 hover:from-pink-700 hover:to-orange-700 text-white font-semibold py-3 rounded-lg transition-all duration-300 hover:scale-105"
                   onClick={() => window.open('#', '_blank')}
@@ -68,18 +86,18 @@ const Index = () => {
 
           {/* Social Media Section */}
           <div className="mt-16 space-y-6">
-            <h2 className="text-3xl font-bold text-slate-300">Follow Me</h2>
+            <h2 className={`text-3xl font-bold ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>Follow Me</h2>
             <div className="flex justify-center gap-8">
               {/* YouTube */}
-              <div className="flex items-center space-x-3 bg-slate-800/50 px-6 py-4 rounded-xl border border-slate-700 hover:border-red-500 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-red-500/20 backdrop-blur-sm">
+              <div className={`flex items-center space-x-3 ${isDark ? 'bg-slate-800/50 border-slate-700' : 'bg-white/60 border-slate-200'} px-6 py-4 rounded-xl border hover:border-red-500 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-red-500/20 backdrop-blur-sm`}>
                 <Youtube className="w-8 h-8 text-red-500" />
-                <span className="text-xl font-semibold text-white">@Belufaney</span>
+                <span className={`text-xl font-semibold ${isDark ? 'text-white' : 'text-slate-800'}`}>@Belufaney</span>
               </div>
 
               {/* Instagram */}
-              <div className="flex items-center space-x-3 bg-slate-800/50 px-6 py-4 rounded-xl border border-slate-700 hover:border-pink-500 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-pink-500/20 backdrop-blur-sm">
+              <div className={`flex items-center space-x-3 ${isDark ? 'bg-slate-800/50 border-slate-700' : 'bg-white/60 border-slate-200'} px-6 py-4 rounded-xl border hover:border-pink-500 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-pink-500/20 backdrop-blur-sm`}>
                 <Instagram className="w-8 h-8 text-pink-500" />
-                <span className="text-xl font-semibold text-white">@_belufaney</span>
+                <span className={`text-xl font-semibold ${isDark ? 'text-white' : 'text-slate-800'}`}>@_belufaney</span>
               </div>
             </div>
           </div>
