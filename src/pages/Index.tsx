@@ -4,12 +4,34 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Instagram, Youtube, Facebook } from "lucide-react";
 import ThemeToggle from "@/components/ThemeToggle";
+import { useToast } from "@/hooks/use-toast";
 
 const Index = () => {
   const [isDark, setIsDark] = useState(true);
+  const { toast } = useToast();
 
   const toggleTheme = () => {
     setIsDark(!isDark);
+  };
+
+  const handleDiscordClick = () => {
+    toast({
+      title: "YES PLEASE WAIT A BIT, WE ARE GOING TO JOIN BELUFAN'S SERVER YAY!",
+      duration: 2000,
+    });
+    setTimeout(() => {
+      window.open('https://discord.gg/9QCGmDqWRX', '_blank');
+    }, 2000);
+  };
+
+  const handleAnimationsClick = () => {
+    toast({
+      title: "YES PLEASE WAIT A BIT, WE ARE GOING TO JOIN BELUFAN'S SERVER YAY!",
+      duration: 2000,
+    });
+    setTimeout(() => {
+      window.open('https://discord.gg/HkYpJurP2Y', '_blank');
+    }, 2000);
   };
 
   const themeClasses = isDark 
@@ -56,7 +78,7 @@ const Index = () => {
                 <p className={isDark ? 'text-slate-400' : 'text-slate-600'}>Connect with the community and stay updated!</p>
                 <Button 
                   className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-semibold py-3 rounded-lg transition-all duration-300 hover:scale-105"
-                  onClick={() => window.open('#', '_blank')}
+                  onClick={handleDiscordClick}
                 >
                   Click here to join Discord
                 </Button>
@@ -76,7 +98,7 @@ const Index = () => {
                 <p className={isDark ? 'text-slate-400' : 'text-slate-600'}>Check out my latest creative works and animations!</p>
                 <Button 
                   className="w-full bg-gradient-to-r from-pink-600 to-orange-600 hover:from-pink-700 hover:to-orange-700 text-white font-semibold py-3 rounded-lg transition-all duration-300 hover:scale-105"
-                  onClick={() => window.open('#', '_blank')}
+                  onClick={handleAnimationsClick}
                 >
                   Click here to watch my animations
                 </Button>
