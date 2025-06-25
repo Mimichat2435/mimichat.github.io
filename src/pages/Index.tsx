@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Instagram, Youtube } from "lucide-react";
+import { Instagram, Youtube, Facebook } from "lucide-react";
 import ThemeToggle from "@/components/ThemeToggle";
 
 const Index = () => {
@@ -87,7 +87,7 @@ const Index = () => {
           {/* Social Media Section */}
           <div className="mt-16 space-y-6">
             <h2 className={`text-3xl font-bold ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>Follow Me</h2>
-            <div className="flex justify-center gap-8">
+            <div className="flex justify-center gap-6 flex-wrap">
               {/* YouTube */}
               <div className={`flex items-center space-x-3 ${isDark ? 'bg-slate-800/50 border-slate-700' : 'bg-white/60 border-slate-200'} px-6 py-4 rounded-xl border hover:border-red-500 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-red-500/20 backdrop-blur-sm`}>
                 <Youtube className="w-8 h-8 text-red-500" />
@@ -98,6 +98,12 @@ const Index = () => {
               <div className={`flex items-center space-x-3 ${isDark ? 'bg-slate-800/50 border-slate-700' : 'bg-white/60 border-slate-200'} px-6 py-4 rounded-xl border hover:border-pink-500 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-pink-500/20 backdrop-blur-sm`}>
                 <Instagram className="w-8 h-8 text-pink-500" />
                 <span className={`text-xl font-semibold ${isDark ? 'text-white' : 'text-slate-800'}`}>@_belufaney</span>
+              </div>
+
+              {/* Facebook */}
+              <div className={`flex items-center space-x-3 ${isDark ? 'bg-slate-800/50 border-slate-700' : 'bg-white/60 border-slate-200'} px-6 py-4 rounded-xl border hover:border-blue-500 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-blue-500/20 backdrop-blur-sm`}>
+                <Facebook className="w-8 h-8 text-blue-500" />
+                <span className={`text-xl font-semibold ${isDark ? 'text-white' : 'text-slate-800'}`}>BeluFan Ey</span>
               </div>
             </div>
           </div>
